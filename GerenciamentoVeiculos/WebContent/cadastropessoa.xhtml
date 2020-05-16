@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+     
+    <h:head>
+ 
+    </h:head>
+ 
+    <h:body>
+    <h:form>
+    	<h1> Cadastro Clientes JDBC </h1>
+    	<p:panelGrid columns="2">
+    	
+    	
+    	<p:inputText placeholder="Digite seu nome" value="#{pessoabean.pessoa.nome}"/>
+        <p:inputText placeholder="Digite seu Email" value="#{pessoabean.pessoa.email}"/>
+        <p:inputMask placeholder="CPF" mask="***.***.***-**" value="#{pessoabean.pessoa.CPF}"/>
+        
+       
+  		
+      
+      <p:selectOneMenu id="DDD" value="#{pessoabean.pessoa.ddd}" style="width:125px">
+            <f:selectItem itemLabel="DDD" itemValue="" />
+            <f:selectItem itemLabel="68" itemValue="68" />
+            <f:selectItem itemLabel="82" itemValue="82" />
+            <f:selectItem itemLabel="96" itemValue="96" />
+             <f:selectItem itemLabel="92" itemValue="92" />
+            <f:selectItem itemLabel="71" itemValue="71" />
+            <f:selectItem itemLabel="88" itemValue="88" />
+             <f:selectItem itemLabel="61" itemValue="61" />
+            <f:selectItem itemLabel="27" itemValue="27" />
+            <f:selectItem itemLabel="62" itemValue="62" />
+             <f:selectItem itemLabel="98" itemValue="98" />
+            <f:selectItem itemLabel="84" itemValue="84" />
+            <f:selectItem itemLabel="31" itemValue="31" />
+            
+            <f:selectItem itemLabel="41" itemValue="41" />
+            <f:selectItem itemLabel="83" itemValue="83" />
+            <f:selectItem itemLabel="91" itemValue="91" />
+             <f:selectItem itemLabel="81" itemValue="81" />
+            <f:selectItem itemLabel="86" itemValue="86" />
+            <f:selectItem itemLabel="21" itemValue="21" />
+             <f:selectItem itemLabel="84" itemValue="84" />
+            <f:selectItem itemLabel="51" itemValue="51" />
+            <f:selectItem itemLabel="69" itemValue="69" />
+             <f:selectItem itemLabel="95" itemValue="95" />
+            <f:selectItem itemLabel="48" itemValue="48" />
+            <f:selectItem itemLabel="79" itemValue="79" />
+             <f:selectItem itemLabel="11" itemValue="11" />
+            <f:selectItem itemLabel="63" itemValue="63" />
+            
+            <f:facet name="footer">
+               <p:separator />
+               
+            </f:facet>
+        </p:selectOneMenu>
+        
+        <p:inputMask placeholder="Numero" mask="9999-9999" value="#{pessoabean.pessoa.numero}"/> 
+        
+        <p:selectOneMenu id="tipo" value="#{pessoabean.pessoa.tipo}" style="width:125px">
+            <f:selectItem itemLabel="Tipo Contato" itemValue="" />
+            <f:selectItem itemLabel="Fixo" itemValue="Fixo" />
+            <f:selectItem itemLabel="Empresarial" itemValue="Empresarial" />
+            <f:selectItem itemLabel="Celular" itemValue="Celular" />
+            <f:facet name="footers">
+               <p:separator />
+               
+            </f:facet>
+        </p:selectOneMenu>
+        
+        <p:commandButton value="Salvar" update="@form" 
+				action="#{pessoabean.salvar}" />
+				<p:commandButton value="Login" update="@form" 
+				action="login.xhtml" />
+				
+        </p:panelGrid>
+        </h:form>
+    </h:body>
+</html>

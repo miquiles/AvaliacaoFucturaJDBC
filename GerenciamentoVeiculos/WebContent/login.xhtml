@@ -13,12 +13,13 @@
  
     <h:body>
     <h:form>
-    	<h1>página inicial </h1>
-    	
-    	<p:outputLabel value="#{pessoabean.pessoa.nome}"/>
+    	<h1>Autenticação JDBC </h1>
     	
     	
-    
+    	
+        <p:inputText placeholder="Digite seu Email" value="#{loginbean.txtEmail}"/>
+        <p:commandButton value="Entrar" action="#{loginbean.entrar}"/>
+        <p:commandButton value="Cadastrar" action="cadastropessoa.xhtml" update="@form"/>
   		
       
         </h:form>
