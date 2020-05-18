@@ -1,27 +1,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:p="http://primefaces.org/ui">
-     
-    <h:head>
- <style>
- body{
- align-content: center;
- }
- </style>
-    </h:head>
- 
-    <h:body>
-    <h:form>
-    	<h1>Autenticação JDBC </h1>
-    	
-    	
-    	
-        <p:inputText placeholder="Digite seu Email" value="#{loginbean.txtEmail}"/>
-        <p:commandButton value="Entrar" action="#{loginbean.entrar}"/>
-        <p:commandButton value="Cadastrar" action="cadastropessoa.xhtml" update="@form"/>
-  		
-      
-        </h:form>
-    </h:body>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Autenticação</title>
+
+
+</h:head>
+
+<h:body>
+	<h:form>
+	
+	
+	<p:panelGrid columns="2">
+		
+		<p:outputLabel value="Email"/>
+		<p:inputText value="#{loginbean.txtEmail}"/>
+		<p:outputLabel value="Password"/>
+		<p:password value="#{loginbean.txtSenha}"/>
+		
+		<p:commandButton  value="Get Started" action="#{loginbean.entrar}" />
+		<p:commandButton  value="New User" action="pessoa_cadastro.xhtml"/>
+		
+		</p:panelGrid>
+		
+		
+		
+	</h:form>
+</h:body>
 </html>

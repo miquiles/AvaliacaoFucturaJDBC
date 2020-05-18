@@ -4,19 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+
+import javax.faces.bean.ViewScoped;
 
 import com.fuctura.DAO.PessoaDao;
 
 
 import Entidades.Pessoa;
 
-@SessionScoped
+
+@ViewScoped
 @ManagedBean (name = "loginbean")
 public class LoginBean {
 	
 
 	private String txtEmail;
+	private String txtSenha;
 	
 	private List<Pessoa> listaPessoas;
 	private Pessoa pessoa; // Objeto para cadastro
@@ -24,31 +27,32 @@ public class LoginBean {
 
 	private PessoaDao pessoaDao;
 	
-	
-	public LoginBean() {
+	public LoginBean(){
 		this.listaPessoas = new ArrayList<Pessoa>();
 		this.pessoa = new Pessoa();
-		pessoaDao = new PessoaDao();
-		
+		this.pessoaDao = new PessoaDao();
+	
 	}
+	
 	
 	public String entrar() {
 
-		boolean contemUser = false;
+		boolean achou = false;
 
 		this.listaPessoas = this.pessoaDao.listarTodos();
 		
 		for (Pessoa pessoaPesquisa : listaPessoas) {
 
-			if (pessoaPesquisa.getEmail().equals(this.getTxtEmail()) ) {
+			if (pessoaPesquisa.getEmail().equals(this.txtEmail) && pessoaPesquisa.getSenha().equals(this.txtSenha))  {
 
-				contemUser = true;
+				achou = true;
 			}
 		}
 
-		if (contemUser == true ){
+		if (achou){
 			System.out.println("Seja bem vindo");
-			return "index.xhtml";
+			return "principal.xhtml";
+			
 		} else {
 			System.out.println("Usuário não existe. Cadastre para acessar o sistema");
 			return "login.xhtml";
@@ -87,6 +91,36 @@ public class LoginBean {
 		this.txtEmail = txtEmail;
 	}
 
+
+
+
+
+
+
+
+	public String getTxtSenha() {
+		return txtSenha;
+	}
+
+
+
+
+
+
+
+
+	public void setTxtSenha(String txtSenha) {
+		this.txtSenha = txtSenha;
+	}
+
+
+
+
+
+
+
+
+	
 
 
 

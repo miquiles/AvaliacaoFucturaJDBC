@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Autenticação</title>
+
+
+</h:head>
+
+<h:body>
+	<h:form>
+
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Name"/>
+		<p:inputText value="#{pessoabean.pessoa.nome}"/>
+		<p:outputLabel value="Email"/>
+		<p:inputText value="#{pessoabean.pessoa.email}"/>
+		<p:outputLabel value="CPF"/>
+		<p:inputText value="#{pessoabean.pessoa.CPF}"/>
+		<p:outputLabel value="Password"/>
+		<p:password value="#{pessoabean.pessoa.senha}"/>
+		<p:commandButton  value="Save" action="#{pessoabean.salvar}"/>
+		<p:commandButton  value="Login" action="login.xhtml"/>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

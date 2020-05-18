@@ -18,14 +18,14 @@ public class JDBCUtil {
 			
 
 			conexao = DriverManager.getConnection( // Com JDBC precisamos setar no banco de dados o comando SET @@global.time_zone = '+3:00';
-					"jdbc:mysql://localhost:3306/dbcarro?useTimezone=true&ampserverTimezone=UTC​​&relaxAutoCommit=true", "root","12345");
+					"jdbc:mysql://localhost:3306/dbcarro2?useTimezone=true&ampserverTimezone=UTC​​&relaxAutoCommit=true", "root","12345");
 			System.out.println("Conexão bem sucedida.");
 		
 		} catch (ClassNotFoundException e) {
 			
 			e.printStackTrace();
 			
-			System.out.println("teste");
+			
 		}
 		
 		return conexao;

@@ -2,26 +2,91 @@ package com.fuctura.bean;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import com.fuctura.DAO.PessoaDao;
+
 
 import Entidades.Pessoa;
 
 
 
-@ViewScoped
+@SessionScoped
 @ManagedBean (name = "pessoabean")
 public class PessoaBean {
 	
 	private List<Pessoa> listaPessoas;
+	private List<Pessoa> listaUser;
+
+	
+	private List<Pessoa> listarPessoas = new ArrayList<Pessoa>();
+
+	
 	
 	Pessoa pessoa = new Pessoa();
 	
 	PessoaDao pessoaDao = new PessoaDao();
+	
+	
+	
+	public PessoaBean(){
+		this.pessoaDao = new PessoaDao();
+		this.listaPessoas = new ArrayList<Pessoa>();
+		this.listaUser = new ArrayList<Pessoa>();
+		
+	}
+	
+	
+	
+	
+public void carregarPessoas() {
+	
+		
+		this.listaPessoas = this.pessoaDao.listarTodos();
+		
+		
+		
+	}
+
+public void carregarUser() {
+	
+	
+	this.setListaUser(this.pessoaDao.listarUsuario());
+	
+	
+	
+}
+
+
+
+// Se der merda, volta o metodo que está comentado
+
+public String edit_user() {
+	carregarPessoas();
+	//carregarUser();
+	System.out.println("Era pra carregar todos os usuário");
+	return "";	
+} 
+
+
+// nao mexer
+public String update() {
+	
+	this.pessoaDao.atualizar(pessoa);
+	this.pessoa = new Pessoa();
+
+
+	return "";
+	
+	
+}
+	
+	
+	
 	
 	// usuario com validação por cpf existente.
 	public String salvar() {
@@ -31,9 +96,7 @@ public class PessoaBean {
 		novo.setNome(this.pessoa.getNome());
 		novo.setCPF(this.pessoa.getCPF());
 		novo.setEmail(this.pessoa.getEmail());
-		novo.setDdd(this.pessoa.getDdd());
-		novo.setNumero(this.pessoa.getNumero());
-		novo.setTipo(this.pessoa.getTipo());
+		novo.setSenha(this.pessoa.getSenha());
 
 		
 		boolean contemUser = false;
@@ -53,12 +116,26 @@ public class PessoaBean {
 	
 	
 	this.pessoaDao.inserir(this.pessoa);
-	this.pessoa = new Pessoa();
-
+	System.out.println("salvo com sucesso");
 	
-		}	return "";
+	
+		return "principal.xhtml";
+	
+		}	
+		
+		return "";
 	}
 	
+	
+	public String remove() {
+		this.pessoaDao.remover(pessoa);
+	
+		System.out.println("Removido com sucesso");
+		this.pessoa = new Pessoa();
+		return "";
+		
+		
+	}
 	
 
 
@@ -82,8 +159,38 @@ public class PessoaBean {
 	}
 
 
+	public List<Pessoa> getListaPessoas() {
+		return listaPessoas;
+	}
 
-	
-	
+	public void setListaPessoas(List<Pessoa> listaPessoas) {
+		this.listaPessoas = listaPessoas;
+	}
+
+	public List<Pessoa> getListarPessoas() {
+		return listarPessoas;
+	}
+
+	public void setListarPessoas(List<Pessoa> listarPessoas) {
+		this.listarPessoas = listarPessoas;
+	}
+
+
+
+
+
+
+	public List<Pessoa> getListaUser() {
+		return listaUser;
+	}
+
+
+
+
+	public void setListaUser(List<Pessoa> listaUser) {
+		this.listaUser = listaUser;
+	}
+
+
 
 }
