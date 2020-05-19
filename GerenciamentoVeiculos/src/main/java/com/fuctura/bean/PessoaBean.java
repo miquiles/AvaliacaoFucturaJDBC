@@ -5,8 +5,10 @@ package com.fuctura.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.fuctura.DAO.PessoaDao;
 
@@ -35,8 +37,9 @@ public class PessoaBean {
 	
 	public PessoaBean(){
 		this.pessoaDao = new PessoaDao();
-		this.listaPessoas = new ArrayList<Pessoa>();
-		this.listaUser = new ArrayList<Pessoa>();
+		
+		this.setListaPessoas(new ArrayList<Pessoa>());
+		
 		
 	}
 	
@@ -78,6 +81,8 @@ public String update() {
 	
 	this.pessoaDao.atualizar(pessoa);
 	this.pessoa = new Pessoa();
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Usuário Atualizado com sucesso"));
+	
 
 
 	return "";
@@ -116,7 +121,9 @@ public String update() {
 	
 	
 	this.pessoaDao.inserir(this.pessoa);
-	System.out.println("salvo com sucesso");
+	
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Salvo com sucesso"));
+	
 	
 	
 		return "principal.xhtml";
@@ -130,9 +137,17 @@ public String update() {
 	public String remove() {
 		this.pessoaDao.remover(pessoa);
 	
-		System.out.println("Removido com sucesso");
 		this.pessoa = new Pessoa();
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Removido com sucesso"));
 		return "";
+		
+		
+	}
+	
+	public String pesquisar() {
+		this.pessoaDao.pesquisar(pessoa.getCPF());
+		this.pessoa = new Pessoa();
+		return"";
 		
 		
 	}

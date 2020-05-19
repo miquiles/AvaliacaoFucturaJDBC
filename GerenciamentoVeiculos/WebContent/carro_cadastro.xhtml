@@ -5,11 +5,8 @@
 
 <h:head>
 	<title>Autenticação</title>
-	
-	
-	
-		<style>
 
+<style>
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
@@ -69,10 +66,9 @@ h2 {
 }
 	
 .box {
-	
-	    padding: 32px;
-	width: 400px;
-	height: 400px;
+	    padding: 7px;
+    width: 700px;
+    height: 500px;
 	background: #fff;
 	border: solid;
 	border-color: #0049d31f; 
@@ -131,6 +127,7 @@ p{
     padding: 0;
     margin: 0;
 }
+
 .ui-inputfield {
 	width: 100%;
 	padding: 12px 20px;
@@ -155,37 +152,71 @@ h1{
 text-align: center;
 font-family: arial;
 color: #0e4e67;
+font-size: larger;
 }
 
 
 </style>
-
-
 </h:head>
 
 <h:body>
 	<h:form>
 	
+
+<header>
+
+		<div class="center">
+
+			<nav>
+
+				<ul>
+					<h:link ><a onclick="window.open('https://www.fuctura.com.br/recife/','_blank')" style="color: #00fff3"> AutoService Fuctura </a></h:link>
+					<h:link><a href="index.xhtml"> Home </a></h:link>
+					<h:link><a href="carro_cadastro.xhtml"> Carros </a></h:link>
+					 <h:link><a href="ordemServico.xhtml"> Serviço </a></h:link>
+					 <h:link><a href="editarpessoa.xhtml"> Usuário </a></h:link>
+					 <h:link>
+							<a href="login.xhtml"> Sair </a>
+						</h:link>
+					
+					 
+					 
+				</ul>
+
+			</nav>
+
+		</div>
+	</header>
+
+
+
+
 	<div class="container">
 			<div class="box">
 
 				<div class="divForm">
-	
-<h1>Autenticação</h1>
+				
+				<h1>Cadastre um carro</h1>
+
+		<p:inputText placeholder="Digite seu CPF" value="#{carrobean.carro.CPF_Pessoa}"/>
+		
+
+		<p:inputText placeholder="Placa do Veículo" value="#{carrobean.carro.placa}"/>
+		
+		<p:inputText placeholder="Marca do Veículo" value="#{carrobean.carro.marca}" />
+
+		<p:inputText placeholder="Modelo do Veículo" value="#{carrobean.carro.modelo}"/>
+
+		<p:inputMask mask="****" placeholder="Ano do Veículo" value="#{carrobean.carro.ano}"/>
+		
+		<h:commandButton  value="Save" action="#{carrobean.salvar_carro}"/>
+		<h:commandButton value="Service" action="ordemServico.xhtml" />
 		
 		
-		<p:inputText placeholder="Email" value="#{loginbean.txtEmail}"/>
-		
-		<p:password placeholder="Password" value="#{loginbean.txtSenha}"/>
-		
-		<h:commandButton  value="Get Started" action="#{loginbean.entrar}"  update="@form"/>
-		<h:commandButton  value="New User" action="pessoa_cadastro.xhtml"/>
-	
-		
-		</div>
-		</div>
-		</div>
-		
+</div>
+</div>
+</div>
+
 	</h:form>
 </h:body>
 </html>

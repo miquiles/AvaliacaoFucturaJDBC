@@ -4,9 +4,10 @@ import java.sql.SQLException;
 import org.junit.Test;
 
 import com.fuctura.DAO.PessoaDao;
-
+import com.fuctura.DAO.RelatorioDao;
 
 import Entidades.Pessoa;
+import Entidades.Relatorio;
 
 
 
@@ -18,15 +19,14 @@ public class TesteJDBCUtil {
 		public void initBanco() throws SQLException  {
 			
 
-		Pessoa pessoa = new Pessoa();
+		Relatorio relatorio = new Relatorio();
 		
-		PessoaDao pessoaDao = new PessoaDao();
+		RelatorioDao relatorioDao = new RelatorioDao();
 		
-		pessoaDao.listarCPF();
+	
+		relatorioDao.listarTodos();
+		System.out.println(relatorioDao.listarTodos());
 		
-		pessoa.setCPF("112");
-		
-		System.out.println(pessoa.getCPF());
 		
 		
 		

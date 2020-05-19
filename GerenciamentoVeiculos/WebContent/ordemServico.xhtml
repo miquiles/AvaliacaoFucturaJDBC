@@ -5,11 +5,8 @@
 
 <h:head>
 	<title>Autenticação</title>
-	
-	
-	
-		<style>
 
+<style>
 
 *{margin: 0; padding: 0; box-sizing: border-box;}
 
@@ -69,10 +66,9 @@ h2 {
 }
 	
 .box {
-	
-	    padding: 32px;
-	width: 400px;
-	height: 400px;
+	    padding: 7px;
+    width: 700px;
+    height: 500px;
 	background: #fff;
 	border: solid;
 	border-color: #0049d31f; 
@@ -131,6 +127,7 @@ p{
     padding: 0;
     margin: 0;
 }
+
 .ui-inputfield {
 	width: 100%;
 	padding: 12px 20px;
@@ -155,37 +152,94 @@ h1{
 text-align: center;
 font-family: arial;
 color: #0e4e67;
+font-size: larger;
 }
 
 
 </style>
-
 
 </h:head>
 
 <h:body>
 	<h:form>
 	
-	<div class="container">
+	
+		<header>
+
+		<div class="center">
+
+			<nav>
+
+				<ul>
+					<h:link ><a onclick="window.open('https://www.fuctura.com.br/recife/','_blank')" style="color: #00fff3"> AutoService Fuctura </a></h:link>
+					<h:link><a href="index.xhtml"> Home </a></h:link>
+					<h:link><a href="carro_cadastro.xhtml"> Carros </a></h:link>
+					 <h:link><a href="ordemServico.xhtml"> Serviço </a></h:link>
+					 <h:link><a href="editarpessoa.xhtml"> Usuário </a></h:link>
+					 <h:link>
+							<a href="login.xhtml"> Sair </a>
+						</h:link>
+					
+					 
+					 
+				</ul>
+
+			</nav>
+
+		</div>
+	</header>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<div class="container">
 			<div class="box">
 
 				<div class="divForm">
 	
-<h1>Autenticação</h1>
+		<h1> Ordem de Serviço </h1>
 		
 		
-		<p:inputText placeholder="Email" value="#{loginbean.txtEmail}"/>
+		<p:inputText placeholder="Informe a placa do veículo" value="#{ordembean.ordem.placa_carro}"/>
 		
-		<p:password placeholder="Password" value="#{loginbean.txtSenha}"/>
+		<p:inputText placeholder="Peça para troca" value="#{ordembean.ordem.peca}"/>
 		
-		<h:commandButton  value="Get Started" action="#{loginbean.entrar}"  update="@form"/>
-		<h:commandButton  value="New User" action="pessoa_cadastro.xhtml"/>
+		<p:inputText placeholder="Serviço" value="#{ordembean.ordem.servico}" />
+		
+		
+		
+		<p:selectOneMenu id="tecnico" value="#{ordembean.ordem.tecnico}" style="width:680px">
+            <f:selectItem itemLabel="Selecione o técnico" itemValue="" />
+            <f:selectItem itemLabel="Roberto lima" itemValue="Roberto lima" />
+            <f:selectItem itemLabel="João Pedro" itemValue="João Pedro" />
+            <f:selectItem itemLabel="Paulo Darlan" itemValue="Paulo Darlan" />
+            <f:facet name="footer">
+               <p:separator />
+               <h:outputText value="3 consoles" style="font-weight:bold;"/>
+            </f:facet>
+        </p:selectOneMenu>
+ 
+		
+		
+		
+		
+
 	
 		
-		</div>
-		</div>
-		</div>
+		<h:commandButton  value="Save" action="#{ordembean.abrir_ordem}"/>
 		
+	</div>
+	</div>
+	</div>
+	
 	</h:form>
 </h:body>
 </html>

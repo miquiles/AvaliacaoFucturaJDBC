@@ -3,9 +3,10 @@ package com.fuctura.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.fuctura.DAO.PessoaDao;
 
@@ -13,7 +14,7 @@ import com.fuctura.DAO.PessoaDao;
 import Entidades.Pessoa;
 
 
-@ViewScoped
+@SessionScoped
 @ManagedBean (name = "loginbean")
 public class LoginBean {
 	
@@ -51,10 +52,10 @@ public class LoginBean {
 
 		if (achou){
 			System.out.println("Seja bem vindo");
-			return "principal.xhtml";
+			return "index.xhtml";
 			
 		} else {
-			System.out.println("Usuário não existe. Cadastre para acessar o sistema");
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "", "Usuário não encontrado"));
 			return "login.xhtml";
 		}
 

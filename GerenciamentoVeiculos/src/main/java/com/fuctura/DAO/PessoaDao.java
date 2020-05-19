@@ -34,14 +34,8 @@ public class PessoaDao {
 			insert.setString(4, pessoa.getSenha());
 			
 			
-		
-			
-			
-			
-			
-
 			insert.execute();
-			conexao.commit(); // salvando registros acima
+			conexao.commit(); 
 			//insert.close();
 		
 			System.out.println(sql);
@@ -174,10 +168,9 @@ public class PessoaDao {
 	
 	
 	public Pessoa pesquisar(String cpf) {
+		Pessoa pessoa = new Pessoa();
 
-		String sql = "select senha, email, nome, senha from PESSOA  where cpf = ?";
-		
-		Pessoa pessoa = null;
+		String sql = "select cpf, nome, email, senha from PESSOA  where cpf ="+pessoa.getCPF();
 		
 		Connection conexao;
 		try {
@@ -185,18 +178,19 @@ public class PessoaDao {
 			
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			
-			ps.setString(1, cpf);
+			ps.setString(1, pessoa.getCPF());
 
 			ResultSet res = ps.executeQuery();
 
-			while (res.next()) {
-				pessoa = new Pessoa();
+			
+				
 				pessoa.setCPF(res.getString("CPF"));
 				pessoa.setNome(res.getString("NOME"));
 				pessoa.setEmail(res.getString("EMAIL"));
 				pessoa.setSenha(res.getString("SENHA"));
-			 }
 			
+			
+			ps.execute();
 			ps.close();
 			
 		} catch (SQLException e) {

@@ -1,0 +1,277 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Autenticação</title>
+	
+	<h:outputStylesheet library="css" name="estilo.css" />
+		<style>
+
+*{margin: 0; padding: 0; box-sizing: border-box;}
+
+
+header{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width:100%;
+	padding: 9px 0;
+	text-align: center;
+	background: #06a2af;
+	
+}
+
+.center{
+	
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 2%;
+	
+	
+	
+
+
+
+}	
+
+.conteudo{
+	height: 2000px;
+	margin-block-start: 200px;
+	
+	border-color: rgba(6, 162, 175, 0.32);
+	
+	background-color: #fff;
+	
+	
+}
+
+
+
+
+a{
+text-decoration: none;
+color: white;
+size: 10px;
+    padding: 12px;
+    font-size: 25px;
+    font-family: sans-serif;
+
+}
+
+h2 {
+	text-align: center;
+	color: grey;
+	
+}
+	
+.box {
+	
+	    padding: 64px;
+    width: 800;
+    height: 600;
+	background: #fff;
+	border: solid;
+	border-color: #0049d31f; 
+	
+	background-color: #f2f2f2;
+}
+
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	
+	
+}
+
+table{
+	
+	text-align: center;
+	margin: 20px;
+}
+.informacao{
+	text-align: center;
+	margin: 30px;
+}
+
+p{
+	margin: 30px
+}
+
+.ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell{
+	text-align: center;
+	margin: 60px;
+}
+
+.divList {
+	border-radius: 5px;
+	background-color: #f2f2f2;
+}
+
+.divForm {
+	border-radius: 5px;
+}
+
+.ui-datatable-tablewrapper {
+      
+   		 margin-inline-end: -350px;
+}
+ 
+.ui-grid {
+	
+	    background-color: azure;
+    clear: both;
+    padding: 0;
+    margin: 0;
+}
+
+.ui-inputfield {
+	width: 50%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 2px solid lightblue;
+	border-radius: 4px;
+}
+
+input[type="submit" i] {
+	width: 100%;
+	background-color: #0e4e67;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	
+}
+h1{
+text-align: center;
+font-family: arial;
+color: #0e4e67;
+}
+
+.ui-datatable-tablewrapper {
+    margin-inline-end: -1000px;
+}
+
+</style>
+
+	
+
+
+</h:head>
+
+<h:body>
+	<h:form>
+	
+	
+	
+	<header>
+
+		<div class="center">
+
+			<nav>
+
+				<ul>
+					<h:link ><a onclick="window.open('https://www.fuctura.com.br/recife/','_blank')" style="color: #00fff3"> AutoService Fuctura </a></h:link>
+					<h:link><a href="index.xhtml"> Home </a></h:link>
+					<h:link><a href="carro_cadastro.xhtml"> Carros </a></h:link>
+					 <h:link><a href="ordemServico.xhtml"> Serviço </a></h:link>
+					 <h:link><a href="editarpessoa.xhtml"> Usuário </a></h:link>
+					 <h:link>
+							<a href="login.xhtml"> Sair </a>
+						</h:link>
+					
+					 
+					 
+				</ul>
+
+			</nav>
+
+		</div>
+	</header>
+	
+
+	
+	
+		
+		<div class="container">
+			<div class="box">
+
+				<div class="divForm">
+
+			
+		<p:inputText placeholder="Nome" value="#{pessoabean.pessoa.nome}"/>
+		
+		
+		<p:inputText placeholder="Email" value="#{pessoabean.pessoa.email}"/>	 
+		
+				 
+		<p:inputText placeholder="CPF" value="#{pessoabean.pessoa.CPF}"/>
+		
+	
+		
+		<p:password placeholder="Password" value="#{pessoabean.pessoa.senha}"/>
+		
+		<h:commandButton value="Search" target="#{pessoabean.pessoa}" 
+						 action="#{pessoabean.edit_user}"  />
+		<h:commandButton value="Update" action="#{pessoabean.update}" update="@form"/>
+		<h:commandButton value="remove" action="#{pessoabean.remove}" update="@form" />
+			<p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate/>
+    	</p:messages>
+    
+		
+		
+		
+		</div>
+		</div>
+		</div>
+		
+		<p:dialog header="listaPessoas" modal="true" visible="true">
+		
+			<p:panelGrid columns="2" layout="grid"
+				styleClass="showcase-text-align-center">
+
+
+				<p:dataTable id="dialogUser" value="#{pessoabean.listaPessoas}" var="pessoa">
+					<p:column headerText="CPF">
+						<h:outputText value="#{pessoa.CPF}" />
+					</p:column>
+					<p:column headerText="Nome">
+						<h:outputText value="#{pessoa.nome}" />
+					</p:column>
+					<p:column headerText="Senha">
+						<h:outputText value="#{pessoa.senha}" />
+					</p:column>
+					<p:column headerText="Email">
+						<h:outputText value="#{pessoa.email}" />
+					</p:column>
+
+					<p:column>
+
+						<h:commandLink value="Edit">
+							<f:setPropertyActionListener target="#{pessoabean.pessoa}"
+								value="#{pessoa}" />
+						</h:commandLink>
+					</p:column>
+					
+					
+
+				</p:dataTable>
+
+
+			</p:panelGrid>
+	
+		</p:dialog>
+		
+	</h:form>
+</h:body>
+</html>
